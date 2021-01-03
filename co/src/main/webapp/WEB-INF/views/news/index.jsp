@@ -28,7 +28,7 @@
 							<c:if test="${xh.first }">
 							<li class="item item-first">
 								<div>
-	                        		<a href="/news/detail/202012225" class="img-width" target="_blank">
+	                        		<a href="${ctx }/news/detail/${news.id }" class="img-width" target="_blank">
 	                            		<img src="https://imagefile.zac.cn//ZaWeb/2020/12/28/27d8ff30-f955-4201-ab3a-ae0dc2d9a328.jpg" alt="中安信业四位党代表，参加市新兴金融行业党委第一次党员代表大会！" title="中安信业四位党代表，参加市新兴金融行业党委第一次党员代表大会！" style="width:550px;height:368px;">
 			                            <div>
 			                                <h1>${news.title }</h1>
@@ -39,10 +39,10 @@
 	                			</div>
                 			</li>
 							</c:if>
-							<c:if test="${!xm.first }">
+							<c:if test="${!xh.first }">
 								<li class="item">
 									<span class="title"> 
-										<a href="${news.id}" target="_self" title="${news.title }">${news.title }</a>
+										<a href="${ctx }/news/detail/${news.id }" target="_self" title="${news.title }">${news.title }</a>
 									</span> 
 									<span class="date">
 										<fmt:formatDate value="${news.createtime}" pattern="yyyy-MM-dd" />
@@ -64,7 +64,7 @@
 							<c:if test="${xh.first }">
 								<li class="item item-first">
 									<div>
-		                        		<a href="/news/detail/202012225" class="img-width" target="_blank">
+		                        		<a href="${ctx }/news/detail/${news.id }" class="img-width" target="_blank">
 		                            		<img src="https://imagefile.zac.cn//ZaWeb/2020/12/28/27d8ff30-f955-4201-ab3a-ae0dc2d9a328.jpg" alt="中安信业四位党代表，参加市新兴金融行业党委第一次党员代表大会！" title="中安信业四位党代表，参加市新兴金融行业党委第一次党员代表大会！" style="width:550px;height:368px;">
 				                            <div>
 				                                <h1>${news.title }</h1>
@@ -77,7 +77,7 @@
 							</c:if>
 							<c:if test="${!xh.first }">
 								<li class="item"><span class="title"> <a
-										href="${news.id}" target="_self" title="${news.title }">${news.title }</a>
+										href="${ctx }/news/detail/${news.id }" target="_self" title="${news.title }">${news.title }</a>
 								</span> <span class="date"><fmt:formatDate value="${news.createtime}" pattern="yyyy-MM-dd" /></span></li>
 							</c:if>
 						</c:forEach>

@@ -22,4 +22,8 @@ public interface NewsinfoMapper {
     int updateByPrimaryKey(Newsinfo record);
 
 	List<Newsinfo> getPaged(@Param("category") int category,@Param("subCategory")int subCategory,@Param("page")int page, @Param("limit")int limit);
+
+	Newsinfo getNext(@Param("orderIndex")Integer orderIndex); 
+
+	Newsinfo getPrev(@Param("orderIndex")Integer orderIndex);
 }

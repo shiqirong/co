@@ -21,4 +21,20 @@ public class NewsService implements INewsService {
 		return lst;
 	}
 
+	@Override
+	public Newsinfo getDetail(Integer id) {
+		return newsinfoMapper.selectByPrimaryKey(id);
+		
+	}
+
+	@Override
+	public Newsinfo getNext(Integer orderIndex) {
+		return newsinfoMapper.getNext(orderIndex);
+	}
+
+	@Override
+	public Newsinfo getPrev(Integer orderIndex) {
+		return newsinfoMapper.getPrev(orderIndex);
+	}
+
 }
