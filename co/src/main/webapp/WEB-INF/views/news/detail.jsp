@@ -25,13 +25,13 @@
 		</div>
 		<div class="fe_ntp">
             <div class="left">
-            	<c:if test="${prevArticle}">
-                    <span>上一篇&nbsp;:&nbsp;</span><a href="/news/detail/20200814">央行定调下半年5大重点工作 未提互金专项整治</a>
+            	<c:if test="${prevArticle!=null}">
+                    <span>上一篇&nbsp;:&nbsp;</span><a href="${ctx}/news/detail/${prevArticle.id }">${prevArticle.title }</a>
                 </c:if>
             </div>
             <div class="right">
-            	<c:if test="${nextArticle }">
-                    <span>下一篇&nbsp;:&nbsp;</span><a href="/news/detail/20190307">两会|证监会前主席肖钢：发展互联网小贷公司满足普惠消费信贷需求</a>
+            	<c:if test="${nextArticle!=null }">
+                    <span>下一篇&nbsp;:&nbsp;</span><a href="${ctx}/news/detail/${nextArticle.id }">${nextArticle.title }</a>
                 </c:if>
             </div>
         </div>

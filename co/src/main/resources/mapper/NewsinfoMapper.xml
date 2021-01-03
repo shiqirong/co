@@ -80,7 +80,7 @@
     where 
     IsDeleted=0
     and IsPublished=1
-    and orderIndex > #{orderIndex,jdbcType=INTEGER}
+    and orderIndex &lt; #{orderIndex,jdbcType=INTEGER}
 	and category = #{category} 
     and subCategory = #{subCategory}
     order by orderIndex

@@ -28,13 +28,17 @@ public class NewsService implements INewsService {
 	}
 
 	@Override
-	public Newsinfo getNext(Integer orderIndex) {
-		return newsinfoMapper.getNext(orderIndex);
+	public Newsinfo getNext(int category, int subCategory, Integer orderIndex) {
+		// TODO Auto-generated method stub
+		return newsinfoMapper.getNext(category,subCategory,orderIndex);
 	}
 
 	@Override
-	public Newsinfo getPrev(Integer orderIndex) {
-		return newsinfoMapper.getPrev(orderIndex);
+	public Newsinfo getPrev(int category, int subCategory, Integer orderIndex) {
+		// TODO Auto-generated method stub
+		return newsinfoMapper.getPrev(category,subCategory,orderIndex);
 	}
+
+
 
 }

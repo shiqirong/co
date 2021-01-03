@@ -32,10 +32,10 @@ public class NewsController extends BaseController {
 		Newsinfo data= newsService.getDetail(id);
 		getRequest().setAttribute("article", data);
 		
-		Newsinfo next= newsService.getNext(data.getOrderindex());
+		Newsinfo next= newsService.getNext(data.getCategory(),data.getSubcategory(), data.getOrderindex());
 		getRequest().setAttribute("nextArticle", next);
 		
-		Newsinfo prev= newsService.getPrev(data.getOrderindex());
+		Newsinfo prev= newsService.getPrev(data.getCategory(),data.getSubcategory(),data.getOrderindex());
 		getRequest().setAttribute("prevArticle", prev);
 		
 		return "news/detail";

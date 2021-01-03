@@ -23,7 +23,7 @@ public interface NewsinfoMapper {
 
 	List<Newsinfo> getPaged(@Param("category") int category,@Param("subCategory")int subCategory,@Param("page")int page, @Param("limit")int limit);
 
-	Newsinfo getNext(@Param("orderIndex")Integer orderIndex); 
+	Newsinfo getNext(@Param("category") int category,@Param("subCategory")int subCategory,@Param("orderIndex")Integer orderIndex); 
 
-	Newsinfo getPrev(@Param("orderIndex")Integer orderIndex);
+	Newsinfo getPrev(@Param("category") int category,@Param("subCategory")int subCategory,@Param("orderIndex")Integer orderIndex);
 }

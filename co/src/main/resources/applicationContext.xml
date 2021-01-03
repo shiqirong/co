@@ -13,7 +13,7 @@
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
     <context:component-scan base-package="com.sqr.co">
-        <context:exclude-filter type="annotation"
+        <context:exclude-filter type="annotation" 
             expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
     <!--sping的配置文件和业务逻辑有关的 -->
