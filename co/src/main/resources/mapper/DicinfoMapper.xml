@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqr.co.dao.DicinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sqr.co.bean.Dicinfo">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Code" jdbcType="VARCHAR" property="code" />
+    <result column="Value" jdbcType="VARCHAR" property="value" />
+    <result column="Category" jdbcType="INTEGER" property="category" />
+    <result column="ParentId" jdbcType="INTEGER" property="parentid" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="CreateTime" jdbcType="DATE" property="createtime" />
+    <result column="CreateUser" jdbcType="INTEGER" property="createuser" />
+    <result column="UpdateTime" jdbcType="DATE" property="updatetime" />
+    <result column="UpdateUser" jdbcType="INTEGER" property="updateuser" />
+    <result column="DeleteTime" jdbcType="DATE" property="deletetime" />
+    <result column="DeleteUser" jdbcType="INTEGER" property="deleteuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Code, Value, Category, ParentId, Remark, CreateTime, CreateUser, UpdateTime, 
+    UpdateUser, DeleteTime, DeleteUser
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dicinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dicinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sqr.co.bean.Dicinfo">
+    insert into dicinfo (Id, Code, Value, 
+      Category, ParentId, Remark, 
+      CreateTime, CreateUser, UpdateTime, 
+      UpdateUser, DeleteTime, DeleteUser
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{category,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DATE}, #{createuser,jdbcType=INTEGER}, #{updatetime,jdbcType=DATE}, 
+      #{updateuser,jdbcType=INTEGER}, #{deletetime,jdbcType=DATE}, #{deleteuser,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqr.co.bean.Dicinfo">
+    insert into dicinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="code != null">
+        Code,
+      </if>
+      <if test="value != null">
+        Value,
+      </if>
+      <if test="category != null">
+        Category,
+      </if>
+      <if test="parentid != null">
+        ParentId,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="createuser != null">
+        CreateUser,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updateuser != null">
+        UpdateUser,
+      </if>
+      <if test="deletetime != null">
+        DeleteTime,
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        #{deleteuser,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqr.co.bean.Dicinfo">
+    update dicinfo
+    <set>
+      <if test="code != null">
+        Code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        Value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        Category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        CreateUser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        UpdateUser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqr.co.bean.Dicinfo">
+    update dicinfo
+    set Code = #{code,jdbcType=VARCHAR},
+      Value = #{value,jdbcType=VARCHAR},
+      Category = #{category,jdbcType=INTEGER},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=DATE},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=DATE},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      DeleteTime = #{deletetime,jdbcType=DATE},
+      DeleteUser = #{deleteuser,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

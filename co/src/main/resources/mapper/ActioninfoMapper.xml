@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqr.co.dao.ActioninfoMapper">
+  <resultMap id="BaseResultMap" type="com.sqr.co.bean.Actioninfo">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Controller" jdbcType="VARCHAR" property="controller" />
+    <result column="Action" jdbcType="VARCHAR" property="action" />
+    <result column="Parameters" jdbcType="VARCHAR" property="parameters" />
+    <result column="Category" jdbcType="VARCHAR" property="category" />
+    <result column="ParentId" jdbcType="BIGINT" property="parentid" />
+    <result column="CreateTime" jdbcType="DATE" property="createtime" />
+    <result column="CreateUser" jdbcType="INTEGER" property="createuser" />
+    <result column="UpdateTime" jdbcType="DATE" property="updatetime" />
+    <result column="UpdateUser" jdbcType="INTEGER" property="updateuser" />
+    <result column="DeleteTime" jdbcType="DATE" property="deletetime" />
+    <result column="DeleteUser" jdbcType="INTEGER" property="deleteuser" />
+    <result column="IsDeleted" jdbcType="BIT" property="isdeleted" />
+    <result column="SystemId" jdbcType="INTEGER" property="systemid" />
+    <result column="SystemName" jdbcType="VARCHAR" property="systemname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Name, Controller, Action, Parameters, Category, ParentId, CreateTime, CreateUser, 
+    UpdateTime, UpdateUser, DeleteTime, DeleteUser, IsDeleted, SystemId, SystemName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from actioninfo
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectBySystemId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from actioninfo
+    where systemid = #{systemId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from actioninfo
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sqr.co.bean.Actioninfo">
+    insert into actioninfo (Id, Name, Controller, 
+      Action, Parameters, Category, 
+      ParentId, CreateTime, CreateUser, 
+      UpdateTime, UpdateUser, DeleteTime, 
+      DeleteUser, IsDeleted, SystemId, 
+      SystemName)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{controller,jdbcType=VARCHAR}, 
+      #{action,jdbcType=VARCHAR}, #{parameters,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=BIGINT}, #{createtime,jdbcType=DATE}, #{createuser,jdbcType=INTEGER}, 
+      #{updatetime,jdbcType=DATE}, #{updateuser,jdbcType=INTEGER}, #{deletetime,jdbcType=DATE}, 
+      #{deleteuser,jdbcType=INTEGER}, #{isdeleted,jdbcType=BIT}, #{systemid,jdbcType=INTEGER}, 
+      #{systemname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqr.co.bean.Actioninfo">
+    insert into actioninfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="controller != null">
+        Controller,
+      </if>
+      <if test="action != null">
+        Action,
+      </if>
+      <if test="parameters != null">
+        Parameters,
+      </if>
+      <if test="category != null">
+        Category,
+      </if>
+      <if test="parentid != null">
+        ParentId,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="createuser != null">
+        CreateUser,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updateuser != null">
+        UpdateUser,
+      </if>
+      <if test="deletetime != null">
+        DeleteTime,
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+      <if test="systemid != null">
+        SystemId,
+      </if>
+      <if test="systemname != null">
+        SystemName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="controller != null">
+        #{controller,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="parameters != null">
+        #{parameters,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="systemid != null">
+        #{systemid,jdbcType=INTEGER},
+      </if>
+      <if test="systemname != null">
+        #{systemname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqr.co.bean.Actioninfo">
+    update actioninfo
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="controller != null">
+        Controller = #{controller,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null">
+        Action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="parameters != null">
+        Parameters = #{parameters,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        Category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        ParentId = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        CreateUser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        UpdateUser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="systemid != null">
+        SystemId = #{systemid,jdbcType=INTEGER},
+      </if>
+      <if test="systemname != null">
+        SystemName = #{systemname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqr.co.bean.Actioninfo">
+    update actioninfo
+    set Name = #{name,jdbcType=VARCHAR},
+      Controller = #{controller,jdbcType=VARCHAR},
+      Action = #{action,jdbcType=VARCHAR},
+      Parameters = #{parameters,jdbcType=VARCHAR},
+      Category = #{category,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=BIGINT},
+      CreateTime = #{createtime,jdbcType=DATE},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=DATE},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      DeleteTime = #{deletetime,jdbcType=DATE},
+      DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      IsDeleted = #{isdeleted,jdbcType=BIT},
+      SystemId = #{systemid,jdbcType=INTEGER},
+      SystemName = #{systemname,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

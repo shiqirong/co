@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqr.co.dao.SsositesMapper">
+  <resultMap id="BaseResultMap" type="com.sqr.co.bean.Ssosites">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="SiteCode" jdbcType="VARCHAR" property="sitecode" />
+    <result column="SiteName" jdbcType="VARCHAR" property="sitename" />
+    <result column="SiteUrl" jdbcType="VARCHAR" property="siteurl" />
+    <result column="SiteLoginUrl" jdbcType="VARCHAR" property="siteloginurl" />
+    <result column="SiteLogoutUrl" jdbcType="VARCHAR" property="sitelogouturl" />
+    <result column="CreateTime" jdbcType="DATE" property="createtime" />
+    <result column="CreateUser" jdbcType="INTEGER" property="createuser" />
+    <result column="UpdateTime" jdbcType="DATE" property="updatetime" />
+    <result column="UpdateUser" jdbcType="INTEGER" property="updateuser" />
+    <result column="DeleteTime" jdbcType="DATE" property="deletetime" />
+    <result column="DeleteUser" jdbcType="INTEGER" property="deleteuser" />
+    <result column="IsDeleted" jdbcType="TINYINT" property="isdeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, SiteCode, SiteName, SiteUrl, SiteLoginUrl, SiteLogoutUrl, CreateTime, CreateUser, 
+    UpdateTime, UpdateUser, DeleteTime, DeleteUser, IsDeleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ssosites
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ssosites
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sqr.co.bean.Ssosites">
+    insert into ssosites (Id, SiteCode, SiteName, 
+      SiteUrl, SiteLoginUrl, SiteLogoutUrl, 
+      CreateTime, CreateUser, UpdateTime, 
+      UpdateUser, DeleteTime, DeleteUser, 
+      IsDeleted)
+    values (#{id,jdbcType=INTEGER}, #{sitecode,jdbcType=VARCHAR}, #{sitename,jdbcType=VARCHAR}, 
+      #{siteurl,jdbcType=VARCHAR}, #{siteloginurl,jdbcType=VARCHAR}, #{sitelogouturl,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DATE}, #{createuser,jdbcType=INTEGER}, #{updatetime,jdbcType=DATE}, 
+      #{updateuser,jdbcType=INTEGER}, #{deletetime,jdbcType=DATE}, #{deleteuser,jdbcType=INTEGER}, 
+      #{isdeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqr.co.bean.Ssosites">
+    insert into ssosites
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="sitecode != null">
+        SiteCode,
+      </if>
+      <if test="sitename != null">
+        SiteName,
+      </if>
+      <if test="siteurl != null">
+        SiteUrl,
+      </if>
+      <if test="siteloginurl != null">
+        SiteLoginUrl,
+      </if>
+      <if test="sitelogouturl != null">
+        SiteLogoutUrl,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="createuser != null">
+        CreateUser,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updateuser != null">
+        UpdateUser,
+      </if>
+      <if test="deletetime != null">
+        DeleteTime,
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sitecode != null">
+        #{sitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="sitename != null">
+        #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="siteurl != null">
+        #{siteurl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteloginurl != null">
+        #{siteloginurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sitelogouturl != null">
+        #{sitelogouturl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqr.co.bean.Ssosites">
+    update ssosites
+    <set>
+      <if test="sitecode != null">
+        SiteCode = #{sitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="sitename != null">
+        SiteName = #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="siteurl != null">
+        SiteUrl = #{siteurl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteloginurl != null">
+        SiteLoginUrl = #{siteloginurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sitelogouturl != null">
+        SiteLogoutUrl = #{sitelogouturl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        CreateUser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        UpdateUser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqr.co.bean.Ssosites">
+    update ssosites
+    set SiteCode = #{sitecode,jdbcType=VARCHAR},
+      SiteName = #{sitename,jdbcType=VARCHAR},
+      SiteUrl = #{siteurl,jdbcType=VARCHAR},
+      SiteLoginUrl = #{siteloginurl,jdbcType=VARCHAR},
+      SiteLogoutUrl = #{sitelogouturl,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=DATE},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=DATE},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      DeleteTime = #{deletetime,jdbcType=DATE},
+      DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      IsDeleted = #{isdeleted,jdbcType=TINYINT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

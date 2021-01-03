@@ -1,0 +1,32 @@
+﻿@{ 
+    var siteData = Html.SiteData();
+}
+<footer class="padding-top-30 padding-bottom-40">
+    <div class="container">
+        <ul class="row text-white">
+            <li class="col-sm-8 col-xs-12">
+                @Html.Raw(siteData.Footer)
+            </li>
+            <li class="col-sm-4 col-xs-12">
+                <div class="text-left text-lg-left padding-top-20">
+                    @Html.LoadImg("images/ewm.jpg", "title=\"扫描关注\"")
+                </div>
+            </li>
+        </ul>
+        <div class="copyright text-left text-lg-center"><a href="http://www.pageadmin.net" target="_blank" class="text-white">Powered By PageAdmin V4.0.10</a></div>
+    </div>
+</footer>
+
+<a href="#" id="toTop" style="display: inline;"><span id="toTopHover" style="opacity: 0;"></span>To Top</a>
+
+@Html.LoadScript("js/wow.min.js")
+<script type="text/javascript">
+    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+        new WOW().init();
+    };
+</script>
+<!--[if lte IE 9]>
+<script type="text/javascript">
+    CheckInternetExplorer();//检测低版本ie
+</script>
+<![endif]-->

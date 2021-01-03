@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqr.co.dao.FileinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sqr.co.bean.Fileinfo">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="FileName" jdbcType="VARCHAR" property="filename" />
+    <result column="FileSuffix" jdbcType="VARCHAR" property="filesuffix" />
+    <result column="FilePath" jdbcType="VARCHAR" property="filepath" />
+    <result column="FileCdnUrl" jdbcType="VARCHAR" property="filecdnurl" />
+    <result column="SecurityCategory" jdbcType="INTEGER" property="securitycategory" />
+    <result column="FileSize" jdbcType="DECIMAL" property="filesize" />
+    <result column="CreateUser" jdbcType="INTEGER" property="createuser" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UpdateUser" jdbcType="INTEGER" property="updateuser" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, FileName, FileSuffix, FilePath, FileCdnUrl, SecurityCategory, FileSize, CreateUser, 
+    CreateTime, UpdateUser, UpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fileinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fileinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sqr.co.bean.Fileinfo">
+    insert into fileinfo (Id, FileName, FileSuffix, 
+      FilePath, FileCdnUrl, SecurityCategory, 
+      FileSize, CreateUser, CreateTime, 
+      UpdateUser, UpdateTime)
+    values (#{id,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR}, #{filesuffix,jdbcType=VARCHAR}, 
+      #{filepath,jdbcType=VARCHAR}, #{filecdnurl,jdbcType=VARCHAR}, #{securitycategory,jdbcType=INTEGER}, 
+      #{filesize,jdbcType=DECIMAL}, #{createuser,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqr.co.bean.Fileinfo">
+    insert into fileinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="filename != null">
+        FileName,
+      </if>
+      <if test="filesuffix != null">
+        FileSuffix,
+      </if>
+      <if test="filepath != null">
+        FilePath,
+      </if>
+      <if test="filecdnurl != null">
+        FileCdnUrl,
+      </if>
+      <if test="securitycategory != null">
+        SecurityCategory,
+      </if>
+      <if test="filesize != null">
+        FileSize,
+      </if>
+      <if test="createuser != null">
+        CreateUser,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updateuser != null">
+        UpdateUser,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filesuffix != null">
+        #{filesuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filecdnurl != null">
+        #{filecdnurl,jdbcType=VARCHAR},
+      </if>
+      <if test="securitycategory != null">
+        #{securitycategory,jdbcType=INTEGER},
+      </if>
+      <if test="filesize != null">
+        #{filesize,jdbcType=DECIMAL},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqr.co.bean.Fileinfo">
+    update fileinfo
+    <set>
+      <if test="filename != null">
+        FileName = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filesuffix != null">
+        FileSuffix = #{filesuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        FilePath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filecdnurl != null">
+        FileCdnUrl = #{filecdnurl,jdbcType=VARCHAR},
+      </if>
+      <if test="securitycategory != null">
+        SecurityCategory = #{securitycategory,jdbcType=INTEGER},
+      </if>
+      <if test="filesize != null">
+        FileSize = #{filesize,jdbcType=DECIMAL},
+      </if>
+      <if test="createuser != null">
+        CreateUser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null">
+        UpdateUser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqr.co.bean.Fileinfo">
+    update fileinfo
+    set FileName = #{filename,jdbcType=VARCHAR},
+      FileSuffix = #{filesuffix,jdbcType=VARCHAR},
+      FilePath = #{filepath,jdbcType=VARCHAR},
+      FileCdnUrl = #{filecdnurl,jdbcType=VARCHAR},
+      SecurityCategory = #{securitycategory,jdbcType=INTEGER},
+      FileSize = #{filesize,jdbcType=DECIMAL},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

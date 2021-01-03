@@ -1,0 +1,86 @@
+﻿@{
+    int columnId = Html.CurrentColumnId();
+    dynamic infoData = Html.InfoData();
+    int infoId = infoData.Id;
+    dynamic prevData = Html.InfoDataPrevious(columnId, (int)infoData.Id);
+    dynamic nextData = Html.InfoDataNext(columnId, (int)infoData.Id);
+    string relativeIds = infoData.RelativeIds;//获取相关新闻的ids;
+    var tagList=Html.InfoTagList("news", infoId);
+}
+
+<div class="container padding-top-20">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Partial("subNavPartial")
+        </div>
+        <div class="col-md-9">
+            @Html.Partial("BreadcrumbPartial")
+            <div class="info-content">
+                <h4 class="text-center line-height-3">@infoData.Title</h4>
+                <div class="text-center">
+                    <span title="发布时间" class="margin-right-20"><i class="fa fa-clock-o"></i> @infoData.Thedate.ToString("yyyy-MM-dd")</span>
+                    <span title="点击数"><i class="fa fa-eye"></i> <span id="lb_clicks">0</span></span>
+                </div>
+                <div class="info-content padding-top-20" id="Content">
+                    @Html.Raw(infoData.Content)
+                </div>
+            </div>
+            <!--标签-->
+            <div class="tag-list">
+                <ul class="clearfix">
+                    <li><i class="fa fa-tags"></i></li>
+                    @foreach (dynamic tag in tagList)
+                    {
+                       <li><a href="/news/tag-@(tag.Id)/" target="_blank">@tag.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <!--上一篇，下一篇-->
+            <div class="clearfix padding-top-20 line-height-2">
+                <ul>
+                    @if (prevData != null)
+                    {
+                        string url = Html.InfoDataUrl((int)prevData.ColumnId, (int)prevData.Id);
+                        <li class="text-gray">上一篇：<a href="@url">@prevData.Title</a></li>
+                    }
+                    @if (nextData != null)
+                    {
+                        string url = Html.InfoDataUrl((int)nextData.ColumnId, (int)nextData.Id);
+                        <li class="text-gray">下一篇：<a href="@url">@nextData.Title</a></li>
+                    }
+                </ul>
+            </div>
+
+
+            <!--相关推荐-->
+            @if (!string.IsNullOrEmpty(relativeIds))
+            {
+                <div class="recommend">
+                    <div class="public-title">相关推荐</div>
+                    @{
+                        var relativeList = Html.InfoDataList(new { Table = "news", ShowNumber = 8, OrderBy = "thedate desc" }, "id in(" + relativeIds + ")");
+                        <ul class="news-list imgae-same-size padding-bottom-40 clearfix">
+                            @foreach (dynamic item in relativeList)
+                            {
+                                string url = Html.InfoDataUrl((int)item.ColumnId, (int)item.Id);
+                                string thumbnail = item.Thumbnail;
+                                string date = item.Thedate.ToString("yyyy-MM-dd");
+                                <li class="item">
+                                    <span class="title">
+                                        <a href="@url" target="_blank" title="@item.Title">@item.Title</a>
+                                    </span>
+                                    <span class="date">@date</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+                        }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var $lb_clicks = $("#lb_clicks");
+    $.post("/E/InfoData/AddClicks", { ColumnId:@infoData.ColumnId,Id:@infoData.Id}, function (data) { $lb_clicks.text(data)})
+</script>

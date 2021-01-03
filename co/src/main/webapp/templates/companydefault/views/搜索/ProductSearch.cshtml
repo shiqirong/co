@@ -1,0 +1,52 @@
+﻿@{
+    int columnId = Html.CurrentColumnId();
+    string kw = StringHelper.Format<string>(HttpContext.Current.Request.QueryString["kw"]);
+    int currentPage = StringHelper.Format<int>(Html.CustomViewParameter("page")); //获取url正则中名称为page的分组数据
+    if (currentPage <= 0)
+    {
+        currentPage = 1;
+    }
+    PageInfo pageInfo = new PageInfo()
+    {
+        PageSize = 15,//每页显示15条数据
+        CurrentPage = currentPage //当前页码，系统预设
+    };
+    var dataList = Html.InfoDataList(new { Table = "product" }, "title like @kw", new { kw = "%" + kw + "%" }, pageInfo);
+    ViewBag.Path = "/product/Search/"; //PagebreakPartial分页文件用到
+    int num = 0;
+}
+@currentPage
+<div class="container padding-bottom-60">
+    <ul class="breadcrumb">
+        <li><a href="@Html.SiteUrl()"><span class="fa fa-home"> 首页</span></a></li>
+        <li><a href="">产品搜索</a></li>
+    </ul>
+
+    <div class="images-list imgae-same-size padding-top-20" id="productList">
+        <div class="row">
+            @foreach (var item in dataList)
+            {
+                num++;
+                string url = Html.InfoDataUrl((int)item.ColumnId, (int)item.Id);
+                string thumbnail = item.Thumbnail;
+                <div class="col-md-3 col-sm-4 col-xs-6 item">
+                    <a href="@url" target="_blank"><img src="@thumbnail" alt="@item.Title"></a>
+                    <a href="@url" target="_blank" class="text-center line-height-3 font-weight-600">
+                        @item.Title
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+    @if (num == 0)
+    {
+        <div class="line-height-2 padding-bottom-20 padding-top-20">
+            暂时没有找到匹配的记录，请更换一个关键词重新搜索!
+        </div>
+    }
+    @Html.Partial("PagebreakPartial", pageInfo)
+</div>
+<script>
+    $("#input-search").val("@kw");
+</script>
+

@@ -1,0 +1,51 @@
+﻿@{
+    //注：本模板为自定义页面模板，不能在栏目中调用。
+    int tagId = StringHelper.Format<int>(Html.CustomViewParameter("tagId"));
+    dynamic tagData = Html.TagData(tagId);//获取tagid对应的标签数据
+    string tagName="";
+    if (tagData!= null)
+    {
+        tagName = tagData.Name;
+        ViewBag.Title = tagName; //自定义seo标题
+        ViewBag.Path = "/news/tag-" + tagId + "/";//分页文件PagebreakPartial用到。
+    }
+    int currentPage = StringHelper.Format<int>(Html.CustomViewParameter("page"));
+    if (currentPage == 0)
+    {
+        currentPage = 1;
+    }
+    PageInfo pageInfo = new PageInfo()
+    {
+        PageSize = 10,//每页显示10条数据
+        CurrentPage = currentPage //当前页码
+    };
+}
+<div class="container padding-top-20">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <ul class="breadcrumb">
+                    <li><a href="@Html.SiteUrl()"><span class="fa fa-home"> 首页</span></a></li>
+                    <li><a href="#">@tagName</a></li>
+                </ul>
+            </div>
+            <div class="news-list">
+                <ul>
+                    @foreach (var item in Html.InfoDataList(new { Table ="news",TagId= tagId},null, null, pageInfo))
+                    {
+                        string url = Html.InfoDataUrl((int)item.ColumnId, (int)item.Id);
+                        string thumbnail = item.Thumbnail;
+                        string date = item.Thedate.ToString("yyyy-MM-dd");
+                        <li class="item">
+                            <span class="title">
+                                <a href="@url" target="_self" title="@item.Title">@item.Title</a>
+                            </span>
+                            <span class="date">@date</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+            @Html.Partial("PagebreakPartial",pageInfo)
+        </div>
+    </div>
+</div>

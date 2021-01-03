@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqr.co.dao.PartnersinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sqr.co.bean.Partnersinfo">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="Url" jdbcType="VARCHAR" property="url" />
+    <result column="ImgUrl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="CreateTime" jdbcType="DATE" property="createtime" />
+    <result column="CreateUser" jdbcType="INTEGER" property="createuser" />
+    <result column="UpdateTime" jdbcType="DATE" property="updatetime" />
+    <result column="UpdateUser" jdbcType="INTEGER" property="updateuser" />
+    <result column="DeleteTime" jdbcType="DATE" property="deletetime" />
+    <result column="DeleteUser" jdbcType="INTEGER" property="deleteuser" />
+    <result column="IsDeleted" jdbcType="BIT" property="isdeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Name, Url, ImgUrl, CreateTime, CreateUser, UpdateTime, UpdateUser, DeleteTime, 
+    DeleteUser, IsDeleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from partnersinfo
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+  <select id="selectAll" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from partnersinfo
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from partnersinfo
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sqr.co.bean.Partnersinfo">
+    insert into partnersinfo (Id, Name, Url, 
+      ImgUrl, CreateTime, CreateUser, 
+      UpdateTime, UpdateUser, DeleteTime, 
+      DeleteUser, IsDeleted)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{imgurl,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{createuser,jdbcType=INTEGER}, 
+      #{updatetime,jdbcType=DATE}, #{updateuser,jdbcType=INTEGER}, #{deletetime,jdbcType=DATE}, 
+      #{deleteuser,jdbcType=INTEGER}, #{isdeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqr.co.bean.Partnersinfo">
+    insert into partnersinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="url != null">
+        Url,
+      </if>
+      <if test="imgurl != null">
+        ImgUrl,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="createuser != null">
+        CreateUser,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updateuser != null">
+        UpdateUser,
+      </if>
+      <if test="deletetime != null">
+        DeleteTime,
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqr.co.bean.Partnersinfo">
+    update partnersinfo
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        Url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null">
+        ImgUrl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        CreateUser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        UpdateUser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqr.co.bean.Partnersinfo">
+    update partnersinfo
+    set Name = #{name,jdbcType=VARCHAR},
+      Url = #{url,jdbcType=VARCHAR},
+      ImgUrl = #{imgurl,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=DATE},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=DATE},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      DeleteTime = #{deletetime,jdbcType=DATE},
+      DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      IsDeleted = #{isdeleted,jdbcType=BIT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

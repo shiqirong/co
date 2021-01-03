@@ -1,0 +1,37 @@
+﻿@{
+    //栏目页模板，不能作为内容页模板调用
+    int columnId = Html.CurrentColumnId();
+    PageInfo pageInfo = new PageInfo()
+    {
+        PageSize = 10,//每页显示10条数据
+        CurrentPage = (int)ViewBag.CurrentPage //当前页码，系统预设
+    };
+}
+<div class="container padding-top-20">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Partial("subNavPartial")
+        </div>
+        <div class="col-md-9">
+            @Html.Partial("BreadcrumbPartial")
+            <div class="news-list">
+                <ul>
+                    @foreach (var item in Html.InfoDataList(new {ColumnId= columnId,OrderBy="thedate desc" }, null, null, pageInfo))
+                    {
+                        string url = Html.InfoDataUrl((int)item.ColumnId, (int)item.Id);
+                        string thumbnail = item.Thumbnail;
+                        string date = item.Thedate.ToString("yyyy-MM-dd");
+                        <li class="item">
+                            <span class="title">
+                                <a href="@url" target="_self" title="@item.Title">@item.Title</a>
+                            </span>
+                            <span class="date">@date</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+            @Html.Partial("PagebreakPartial", pageInfo)
+        </div>
+    </div>
+</div>
+

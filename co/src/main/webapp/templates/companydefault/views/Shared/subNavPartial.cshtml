@@ -1,0 +1,12 @@
+﻿<div class="sub-nav-box">
+    <div class="sub-nav-title clearfix">
+        @Html.TopColumnName()
+    </div>
+    <div class="sub-nav" id="subNav">
+        @Html.TopColumnChildrensHtml()
+    </div>
+</div>
+<script type="text/javascript">
+    var $subNav = $("#subNav");
+    $subNav.children("ul").find("li").InitNav(@Html.CurrentColumnId());//初始化响应式菜单
+</script>

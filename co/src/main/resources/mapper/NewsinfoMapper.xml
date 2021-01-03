@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqr.co.dao.NewsinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sqr.co.bean.Newsinfo">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Title" jdbcType="VARCHAR" property="title" />
+    <result column="Title2" jdbcType="VARCHAR" property="title2" />
+    <result column="Content2" jdbcType="VARCHAR" property="content2" />
+    <result column="Imagesmall" jdbcType="VARCHAR" property="imagesmall" />
+    <result column="Imagebig" jdbcType="VARCHAR" property="imagebig" />
+    <result column="IsHot" jdbcType="INTEGER" property="ishot" />
+    <result column="Ispublished" jdbcType="INTEGER" property="ispublished" />
+    <result column="PublishedTime" jdbcType="DATE" property="publishedtime" />
+    <result column="CreateTime" jdbcType="DATE" property="createtime" />
+    <result column="CreateUser" jdbcType="INTEGER" property="createuser" />
+    <result column="UpdateTime" jdbcType="DATE" property="updatetime" />
+    <result column="UpdateUser" jdbcType="INTEGER" property="updateuser" />
+    <result column="DeleteTime" jdbcType="DATE" property="deletetime" />
+    <result column="DeleteUser" jdbcType="INTEGER" property="deleteuser" />
+    <result column="IsDeleted" jdbcType="INTEGER" property="isdeleted" />
+    <result column="OrderIndex" jdbcType="INTEGER" property="orderindex" />
+    <result column="Category" jdbcType="INTEGER" property="category" />
+    <result column="SubCategory" jdbcType="INTEGER" property="subcategory" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sqr.co.bean.Newsinfo">
+    <result column="Content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Title, Title2, Content2, Imagesmall, Imagebig, IsHot, Ispublished, PublishedTime, 
+    CreateTime, CreateUser, UpdateTime, UpdateUser, DeleteTime, DeleteUser, IsDeleted, 
+    OrderIndex, Category, SubCategory
+  </sql>
+  <sql id="Blob_Column_List">
+    Content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from newsinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+   
+  <select id="getPaged" parameterType="com.sqr.co.dto.News_GetPaged_InputDto" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from newsinfo
+    where category = #{category} 
+    and subCategory = #{subCategory}
+    limit #{page},#{limit}
+  </select>
+   
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from newsinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sqr.co.bean.Newsinfo">
+    insert into newsinfo (Id, Title, Title2, 
+      Content2, Imagesmall, Imagebig, 
+      IsHot, Ispublished, PublishedTime, 
+      CreateTime, CreateUser, UpdateTime, 
+      UpdateUser, DeleteTime, DeleteUser, 
+      IsDeleted, OrderIndex, Category, 
+      SubCategory, Content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{title2,jdbcType=VARCHAR}, 
+      #{content2,jdbcType=VARCHAR}, #{imagesmall,jdbcType=VARCHAR}, #{imagebig,jdbcType=VARCHAR}, 
+      #{ishot,jdbcType=INTEGER}, #{ispublished,jdbcType=INTEGER}, #{publishedtime,jdbcType=DATE}, 
+      #{createtime,jdbcType=DATE}, #{createuser,jdbcType=INTEGER}, #{updatetime,jdbcType=DATE}, 
+      #{updateuser,jdbcType=INTEGER}, #{deletetime,jdbcType=DATE}, #{deleteuser,jdbcType=INTEGER}, 
+      #{isdeleted,jdbcType=INTEGER}, #{orderindex,jdbcType=INTEGER}, #{category,jdbcType=INTEGER}, 
+      #{subcategory,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqr.co.bean.Newsinfo">
+    insert into newsinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="title != null">
+        Title,
+      </if>
+      <if test="title2 != null">
+        Title2,
+      </if>
+      <if test="content2 != null">
+        Content2,
+      </if>
+      <if test="imagesmall != null">
+        Imagesmall,
+      </if>
+      <if test="imagebig != null">
+        Imagebig,
+      </if>
+      <if test="ishot != null">
+        IsHot,
+      </if>
+      <if test="ispublished != null">
+        Ispublished,
+      </if>
+      <if test="publishedtime != null">
+        PublishedTime,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="createuser != null">
+        CreateUser,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updateuser != null">
+        UpdateUser,
+      </if>
+      <if test="deletetime != null">
+        DeleteTime,
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser,
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted,
+      </if>
+      <if test="orderindex != null">
+        OrderIndex,
+      </if>
+      <if test="category != null">
+        Category,
+      </if>
+      <if test="subcategory != null">
+        SubCategory,
+      </if>
+      <if test="content != null">
+        Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesmall != null">
+        #{imagesmall,jdbcType=VARCHAR},
+      </if>
+      <if test="imagebig != null">
+        #{imagebig,jdbcType=VARCHAR},
+      </if>
+      <if test="ishot != null">
+        #{ishot,jdbcType=INTEGER},
+      </if>
+      <if test="ispublished != null">
+        #{ispublished,jdbcType=INTEGER},
+      </if>
+      <if test="publishedtime != null">
+        #{publishedtime,jdbcType=DATE},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="orderindex != null">
+        #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="subcategory != null">
+        #{subcategory,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqr.co.bean.Newsinfo">
+    update newsinfo
+    <set>
+      <if test="title != null">
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        Title2 = #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        Content2 = #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesmall != null">
+        Imagesmall = #{imagesmall,jdbcType=VARCHAR},
+      </if>
+      <if test="imagebig != null">
+        Imagebig = #{imagebig,jdbcType=VARCHAR},
+      </if>
+      <if test="ishot != null">
+        IsHot = #{ishot,jdbcType=INTEGER},
+      </if>
+      <if test="ispublished != null">
+        Ispublished = #{ispublished,jdbcType=INTEGER},
+      </if>
+      <if test="publishedtime != null">
+        PublishedTime = #{publishedtime,jdbcType=DATE},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        CreateUser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        UpdateUser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        IsDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="orderindex != null">
+        OrderIndex = #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        Category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="subcategory != null">
+        SubCategory = #{subcategory,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        Content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sqr.co.bean.Newsinfo">
+    update newsinfo
+    set Title = #{title,jdbcType=VARCHAR},
+      Title2 = #{title2,jdbcType=VARCHAR},
+      Content2 = #{content2,jdbcType=VARCHAR},
+      Imagesmall = #{imagesmall,jdbcType=VARCHAR},
+      Imagebig = #{imagebig,jdbcType=VARCHAR},
+      IsHot = #{ishot,jdbcType=INTEGER},
+      Ispublished = #{ispublished,jdbcType=INTEGER},
+      PublishedTime = #{publishedtime,jdbcType=DATE},
+      CreateTime = #{createtime,jdbcType=DATE},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=DATE},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      DeleteTime = #{deletetime,jdbcType=DATE},
+      DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      IsDeleted = #{isdeleted,jdbcType=INTEGER},
+      OrderIndex = #{orderindex,jdbcType=INTEGER},
+      Category = #{category,jdbcType=INTEGER},
+      SubCategory = #{subcategory,jdbcType=INTEGER},
+      Content = #{content,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqr.co.bean.Newsinfo">
+    update newsinfo
+    set Title = #{title,jdbcType=VARCHAR},
+      Title2 = #{title2,jdbcType=VARCHAR},
+      Content2 = #{content2,jdbcType=VARCHAR},
+      Imagesmall = #{imagesmall,jdbcType=VARCHAR},
+      Imagebig = #{imagebig,jdbcType=VARCHAR},
+      IsHot = #{ishot,jdbcType=INTEGER},
+      Ispublished = #{ispublished,jdbcType=INTEGER},
+      PublishedTime = #{publishedtime,jdbcType=DATE},
+      CreateTime = #{createtime,jdbcType=DATE},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=DATE},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      DeleteTime = #{deletetime,jdbcType=DATE},
+      DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      IsDeleted = #{isdeleted,jdbcType=INTEGER},
+      OrderIndex = #{orderindex,jdbcType=INTEGER},
+      Category = #{category,jdbcType=INTEGER},
+      SubCategory = #{subcategory,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

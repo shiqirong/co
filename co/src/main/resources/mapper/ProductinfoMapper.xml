@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqr.co.dao.ProductinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sqr.co.bean.Productinfo">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Title" jdbcType="VARCHAR" property="title" />
+    <result column="Title2" jdbcType="VARCHAR" property="title2" />
+    <result column="Content" jdbcType="VARCHAR" property="content" />
+    <result column="Content2" jdbcType="VARCHAR" property="content2" />
+    <result column="Imagesmall" jdbcType="VARCHAR" property="imagesmall" />
+    <result column="Imagebig" jdbcType="VARCHAR" property="imagebig" />
+    <result column="Ishot" jdbcType="VARCHAR" property="ishot" />
+    <result column="Ispublished" jdbcType="VARCHAR" property="ispublished" />
+    <result column="PublishedTime" jdbcType="DATE" property="publishedtime" />
+    <result column="CreateTime" jdbcType="DATE" property="createtime" />
+    <result column="CreateUser" jdbcType="INTEGER" property="createuser" />
+    <result column="UpdateTime" jdbcType="DATE" property="updatetime" />
+    <result column="UpdateUser" jdbcType="INTEGER" property="updateuser" />
+    <result column="DeleteTime" jdbcType="DATE" property="deletetime" />
+    <result column="DeleteUser" jdbcType="INTEGER" property="deleteuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Title, Title2, Content, Content2, Imagesmall, Imagebig, Ishot, Ispublished, PublishedTime, 
+    CreateTime, CreateUser, UpdateTime, UpdateUser, DeleteTime, DeleteUser
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from productinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from productinfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sqr.co.bean.Productinfo">
+    insert into productinfo (Id, Title, Title2, 
+      Content, Content2, Imagesmall, 
+      Imagebig, Ishot, Ispublished, 
+      PublishedTime, CreateTime, CreateUser, 
+      UpdateTime, UpdateUser, DeleteTime, 
+      DeleteUser)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{title2,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{content2,jdbcType=VARCHAR}, #{imagesmall,jdbcType=VARCHAR}, 
+      #{imagebig,jdbcType=VARCHAR}, #{ishot,jdbcType=VARCHAR}, #{ispublished,jdbcType=VARCHAR}, 
+      #{publishedtime,jdbcType=DATE}, #{createtime,jdbcType=DATE}, #{createuser,jdbcType=INTEGER}, 
+      #{updatetime,jdbcType=DATE}, #{updateuser,jdbcType=INTEGER}, #{deletetime,jdbcType=DATE}, 
+      #{deleteuser,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqr.co.bean.Productinfo">
+    insert into productinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="title != null">
+        Title,
+      </if>
+      <if test="title2 != null">
+        Title2,
+      </if>
+      <if test="content != null">
+        Content,
+      </if>
+      <if test="content2 != null">
+        Content2,
+      </if>
+      <if test="imagesmall != null">
+        Imagesmall,
+      </if>
+      <if test="imagebig != null">
+        Imagebig,
+      </if>
+      <if test="ishot != null">
+        Ishot,
+      </if>
+      <if test="ispublished != null">
+        Ispublished,
+      </if>
+      <if test="publishedtime != null">
+        PublishedTime,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="createuser != null">
+        CreateUser,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updateuser != null">
+        UpdateUser,
+      </if>
+      <if test="deletetime != null">
+        DeleteTime,
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesmall != null">
+        #{imagesmall,jdbcType=VARCHAR},
+      </if>
+      <if test="imagebig != null">
+        #{imagebig,jdbcType=VARCHAR},
+      </if>
+      <if test="ishot != null">
+        #{ishot,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublished != null">
+        #{ispublished,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedtime != null">
+        #{publishedtime,jdbcType=DATE},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        #{deleteuser,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqr.co.bean.Productinfo">
+    update productinfo
+    <set>
+      <if test="title != null">
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="title2 != null">
+        Title2 = #{title2,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        Content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="content2 != null">
+        Content2 = #{content2,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesmall != null">
+        Imagesmall = #{imagesmall,jdbcType=VARCHAR},
+      </if>
+      <if test="imagebig != null">
+        Imagebig = #{imagebig,jdbcType=VARCHAR},
+      </if>
+      <if test="ishot != null">
+        Ishot = #{ishot,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublished != null">
+        Ispublished = #{ispublished,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedtime != null">
+        PublishedTime = #{publishedtime,jdbcType=DATE},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="createuser != null">
+        CreateUser = #{createuser,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="updateuser != null">
+        UpdateUser = #{updateuser,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null">
+        DeleteTime = #{deletetime,jdbcType=DATE},
+      </if>
+      <if test="deleteuser != null">
+        DeleteUser = #{deleteuser,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqr.co.bean.Productinfo">
+    update productinfo
+    set Title = #{title,jdbcType=VARCHAR},
+      Title2 = #{title2,jdbcType=VARCHAR},
+      Content = #{content,jdbcType=VARCHAR},
+      Content2 = #{content2,jdbcType=VARCHAR},
+      Imagesmall = #{imagesmall,jdbcType=VARCHAR},
+      Imagebig = #{imagebig,jdbcType=VARCHAR},
+      Ishot = #{ishot,jdbcType=VARCHAR},
+      Ispublished = #{ispublished,jdbcType=VARCHAR},
+      PublishedTime = #{publishedtime,jdbcType=DATE},
+      CreateTime = #{createtime,jdbcType=DATE},
+      CreateUser = #{createuser,jdbcType=INTEGER},
+      UpdateTime = #{updatetime,jdbcType=DATE},
+      UpdateUser = #{updateuser,jdbcType=INTEGER},
+      DeleteTime = #{deletetime,jdbcType=DATE},
+      DeleteUser = #{deleteuser,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
